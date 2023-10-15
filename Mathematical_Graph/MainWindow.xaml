@@ -1,0 +1,65 @@
+﻿<mah:MetroWindow x:Class="Mathematical_Graph.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:Mathematical_Graph"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:viewModels ="clr-namespace:Mathematical_Graph.ViewModels"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        mc:Ignorable="d"
+        Title="Математические графики" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" >
+    <!--#region Стиль окна-->
+    <mah:MetroWindow.LeftWindowCommands>
+        <mah:WindowCommands>
+            <iconPacks:PackIconModern Width="22"
+                                  Height="22"
+                                  Kind="Diagram" />
+        </mah:WindowCommands>
+    </mah:MetroWindow.LeftWindowCommands>
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <Button Command="{Binding SendEmailTehCommand}">
+                <Button.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconModern Width="22"
+                                        Height="22"
+                                        VerticalAlignment="Center"
+                                        Kind="Email"/>
+                            <TextBlock Margin="4 0 0 0"
+                         VerticalAlignment="Center"
+                         Text="Обратиться к тех.поддержке" />
+                        </StackPanel>
+                    </DataTemplate>
+                </Button.ContentTemplate>
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+    <!--#endregion-->
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+        <TextBox Grid.Column="0" FontSize="20" IsReadOnly="True" Text="{Binding timer, StringFormat=Таймер работы: {0}}"/>
+        <TextBox  Grid.Column="0" FontSize="15" materialDesign:HintAssist.Hint="Введите значение коэф. a" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Acoef}"/>
+            <TextBox Grid.Column="0" FontSize="15" materialDesign:HintAssist.Hint="Введите значение коэф. b" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Bcoef}"/>
+            <TextBox Grid.Column="0" FontSize="15" materialDesign:HintAssist.Hint="Введите значение коэф. c" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Ccoef}"/>
+        <ComboBox SelectedItem="{Binding SelectedItem}" materialDesign:HintAssist.Hint="Выбор графика" FontSize="15" Grid.Row="1" Grid.Column="0">
+            <ComboBoxItem Content="График 1: y = x^2" Tag="x*x" />
+            <ComboBoxItem Content="График 2: y = sin(x)" Tag="sin(x)" />
+            <ComboBoxItem Content="График 3: y = cos(x)" Tag="cos(x)" />
+            <ComboBoxItem Content="График 4: y = ax^2 + bx + c" Tag="a*x*x + b*x + c" />
+        </ComboBox>
+            <Button Content="Вывести" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding GetGraphCommand}" Margin="5" Cursor="Hand"/>
+        </StackPanel>
+        <oxy:PlotView Grid.Column="1" Model="{Binding GraphModel}" Width="auto" Height="auto" Margin="10" Cursor="" />
+    </Grid>
+</mah:MetroWindow>

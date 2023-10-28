@@ -47,7 +47,7 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel>
+        <StackPanel Margin="10 5 0 0">
         <TextBox Grid.Column="0" FontSize="20" IsReadOnly="True" Text="{Binding timer, StringFormat=Таймер работы: {0}}"/>
         <TextBox  Grid.Column="0" FontSize="15" materialDesign:HintAssist.Hint="Введите значение коэф. a" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Acoef}"/>
             <TextBox Grid.Column="0" FontSize="15" materialDesign:HintAssist.Hint="Введите значение коэф. b" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Bcoef}"/>

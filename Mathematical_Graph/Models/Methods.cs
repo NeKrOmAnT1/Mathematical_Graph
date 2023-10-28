@@ -17,24 +17,28 @@ namespace Mathematical_Graph.Models
         #region Построение графика
         public static PlotModel GenerateGraphModel(double a, double b, double c, string selectedGraph)
         {
-            PlotModel graphModel = new PlotModel { Title = "График" };
-            LinearAxis xAxis = new LinearAxis { Position = AxisPosition.Bottom };
+            PlotModel graphModel = new PlotModel { Title = "График", TitleColor = OxyColors.White, PlotAreaBorderColor = OxyColors.Black, PlotType = PlotType.Cartesian};
+            LinearAxis xAxis = new LinearAxis { Position = AxisPosition.Bottom};
             LinearAxis yAxis = new LinearAxis { Position = AxisPosition.Left };
             graphModel.Axes.Add(xAxis);
             graphModel.Axes.Add(yAxis);
 
-            LineSeries series = new LineSeries { Title = "График" };
+            LineSeries series = new LineSeries { Title = "Данные о точках", Color = OxyColors.BlanchedAlmond, MarkerType=MarkerType.Circle, MarkerSize=3, MarkerFill=OxyColors.White};
 
-            for (double x = -10; x <= 10; x += 0.1)
+            for (double x = -10; x <= 10; x += 0.25)
             {
                 double y = CalculateY(x, a, b, c, selectedGraph);
                 if (y >= -10 && y <= 10)
                 {
-                    series.Points.Add(new DataPoint(x, y));
+                    double FormatX = Math.Round(x, 2);
+                    double FormatY = Math.Round(y, 2);
+                    series.Points.Add(new DataPoint(FormatX, FormatY));
                 }
             }
-            graphModel.Series.Add(series);
 
+
+            graphModel.Series.Add(series);
+          
             return graphModel;
         }
         public static double CalculateY(double x, double a, double b, double c, string selectedGraph)

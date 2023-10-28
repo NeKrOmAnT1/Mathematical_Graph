@@ -10,7 +10,7 @@
         xmlns:viewModels ="clr-namespace:Mathematical_Graph.ViewModels"
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
-        Title="Математические графики" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" >
+        Title="Математические графики" Height="450" Width="800" ResizeMode="NoResize" Background="LightBlue" WindowStartupLocation="CenterScreen" >
     <!--#region Стиль окна-->
     <mah:MetroWindow.LeftWindowCommands>
         <mah:WindowCommands>
@@ -48,8 +48,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Margin="10 5 0 0">
-        <TextBox Grid.Column="0" FontSize="20" IsReadOnly="True" Text="{Binding timer, StringFormat=Таймер работы: {0}}"/>
-        <TextBox  Grid.Column="0" FontSize="15" materialDesign:HintAssist.Hint="Введите значение коэф. a" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Acoef}"/>
+            <TextBlock Text="Исходные данные" Style="{StaticResource MaterialDesignHeadline6TextBlock}" FontSize="20" Foreground="White"/>
+            <TextBox  Grid.Column="0" FontSize="15" materialDesign:HintAssist.Hint="Введите значение коэф. a" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Acoef}"/>
             <TextBox Grid.Column="0" FontSize="15" materialDesign:HintAssist.Hint="Введите значение коэф. b" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Bcoef}"/>
             <TextBox Grid.Column="0" FontSize="15" materialDesign:HintAssist.Hint="Введите значение коэф. c" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Ccoef}"/>
         <ComboBox SelectedItem="{Binding SelectedItem}" materialDesign:HintAssist.Hint="Выбор графика" FontSize="15" Grid.Row="1" Grid.Column="0">
@@ -60,6 +60,6 @@
         </ComboBox>
             <Button Content="Вывести" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding GetGraphCommand}" Margin="5" Cursor="Hand"/>
         </StackPanel>
-        <oxy:PlotView Grid.Column="1" Model="{Binding GraphModel}" Width="auto" Height="auto" Margin="10" Cursor="" />
+        <oxy:PlotView Background="LightBlue" Grid.Column="1" Model="{Binding GraphModel}" Width="auto" Height="auto" Margin="10" Cursor="" />
     </Grid>
 </mah:MetroWindow>
